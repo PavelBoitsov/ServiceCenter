@@ -1,11 +1,8 @@
 package service_center.dao;
 
-import java.util.Date;
+import java.util.*;
+import javax.persistence.*;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
 public class History{
