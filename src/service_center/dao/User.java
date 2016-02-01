@@ -14,9 +14,17 @@ public class User{
 	private String password;
 	private String fName;
 	private String sName;
-	private int telNumber;
+	private String telNumber;
 	@ManyToOne
 	private Position position;
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
 
 	public String getLogin() {
 		return login;
@@ -50,11 +58,11 @@ public class User{
 		this.sName = sName;
 	}
 
-	public int getTelNumber() {
+	public String getTelNumber() {
 		return telNumber;
 	}
 
-	public void setTelNumber(int telNumber) {
+	public void setTelNumber(String telNumber) {
 		this.telNumber = telNumber;
 	}
 
@@ -62,8 +70,7 @@ public class User{
 		super();
 	}
 
-	public User(String login, String password, String fName, String sName, int telNumber){ //Position position) {
-		super();
+	public User(String login, String password, String fName, String sName, String telNumber){ //Position position) {
 		this.login = login;
 		this.password = password;
 		this.fName = fName;

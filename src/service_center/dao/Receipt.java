@@ -11,8 +11,10 @@ public class Receipt {
 	private Date date;
 	@ManyToOne
 	private Client client;
-//	private Shop shop;
-//	private User user;
+	@ManyToOne
+	private Shop shop;
+	@ManyToOne
+	private User user;
 //	private Product product;
 	private String defectClient;
 	private String equipment;
@@ -43,7 +45,7 @@ public class Receipt {
 		this.client = client;
 	}
 
-/*	public Shop getShop() {
+	public Shop getShop() {
 		return shop;
 	}
 
@@ -59,7 +61,7 @@ public class Receipt {
 		this.user = user;
 	}
 
-	public Product getProduct() {
+/*	public Product getProduct() {
 		return product;
 	}
 

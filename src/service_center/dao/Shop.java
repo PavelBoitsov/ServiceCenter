@@ -10,8 +10,7 @@ public class Shop {
 	private String name;
 	private String code;
 
-	public Shop(int id, String name, String code) {
-		this.id = id;
+	public Shop(String name, String code) {
 		this.name = name;
 		this.code = code;
 	}
