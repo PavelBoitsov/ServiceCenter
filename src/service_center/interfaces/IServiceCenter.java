@@ -9,7 +9,7 @@ public interface IServiceCenter {
 	boolean addUser(User user);
 	boolean addPosition(Position position);
 	boolean addProduct(Product product);
-	boolean add—omplexityRepair(ComplexityRepair complexityRepair);
+	boolean addComplexityRepair(ComplexityRepair complexityRepair);
 	boolean addStatus(Status status);
 	boolean addRepiatRepair(RepiatRepair repiatRepair);
 	

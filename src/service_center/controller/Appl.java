@@ -21,8 +21,8 @@ public class Appl {
 		
 		ComplexityRepair cr1 = new ComplexityRepair("Notebook", 90);
 		ComplexityRepair cr2 = new ComplexityRepair("Monitor", 30);
-		controller.add—omplexityRepair(cr1);
-		controller.add—omplexityRepair(cr2);
+		controller.addComplexityRepair(cr1);
+		controller.addComplexityRepair(cr2);
 		
 		Product product1 = new Product("Monitor", "BN123F987", 36, "LG", "1943W", cr2);
 		Product product2 = new Product("Monitor", "123F98711", 36, "Samsung", "940N", cr2);
