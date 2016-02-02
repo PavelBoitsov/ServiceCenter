@@ -43,7 +43,7 @@ public class ReceiptHibernate implements IServiceCenter {
 		if (clientEntity == null) {
 			clientEntity = new Client(client.getfName(), client.getsName(), client.getTelNumber(), client.getEmail(),
 					client.getAddress());
-			em.persist(client);
+			em.persist(clientEntity);
 			return true;
 		}
 		return false;
@@ -67,7 +67,7 @@ public class ReceiptHibernate implements IServiceCenter {
 		if (userEntity == null) {
 			userEntity = new User(user.getLogin(), user.getPassword(), user.getfName(), user.getsName(),
 					user.getTelNumber());
-			em.persist(user);
+			em.persist(userEntity);
 			return true;
 		}
 		return false;
@@ -107,8 +107,9 @@ public class ReceiptHibernate implements IServiceCenter {
 	@Transactional
 	public boolean addProduct(Product product) {
 		Product productEntity = getProdut(product.getModel(), product.getManufacturer());
-		if(productEntity == null){
-			productEntity = new Product(product.getName(), product.getSerialNumber(), product.getWarranty(), product.getManufacturer(), product.getModel(), product.getComplexityRepair());
+		if (productEntity == null) {
+			productEntity = new Product(product.getName(), product.getSerialNumber(), product.getWarranty(),
+					product.getManufacturer(), product.getModel(), product.getComplexityRepair());
 			em.persist(productEntity);
 			return true;
 		}
@@ -129,7 +130,7 @@ public class ReceiptHibernate implements IServiceCenter {
 	@Transactional
 	public boolean add—omplexityRepair(ComplexityRepair complexityRepair) {
 		ComplexityRepair complRepEntity = getComplRep(complexityRepair.getComplexity());
-		if(complRepEntity == null){
+		if (complRepEntity == null) {
 			complRepEntity = new ComplexityRepair(complexityRepair.getComplexity(), complexityRepair.getTime());
 			em.persist(complRepEntity);
 			return true;
@@ -150,7 +151,7 @@ public class ReceiptHibernate implements IServiceCenter {
 	@Transactional
 	public boolean addStatus(Status status) {
 		Status statusEntity = em.find(Status.class, status.getId());
-		if(statusEntity == null){
+		if (statusEntity == null) {
 			statusEntity = new Status();
 			em.persist(statusEntity);
 			return true;
@@ -162,10 +163,10 @@ public class ReceiptHibernate implements IServiceCenter {
 	@Transactional
 	public boolean addRepiatRepair(RepiatRepair repiatRepair) {
 		RepiatRepair repEntity = em.find(RepiatRepair.class, repiatRepair.getId());
-		if(repEntity == null){
-		repEntity = new RepiatRepair();	
-		em.persist(repiatRepair);
-		return true;
+		if (repEntity == null) {
+			repEntity = new RepiatRepair();
+			em.persist(repEntity);
+			return true;
 		}
 		return false;
 	}
