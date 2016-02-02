@@ -25,8 +25,8 @@ public class Status {
 		this.status = status;
 	}
 
-	
-	
-	
+	public int getId() {
+		return id;
+	}
 
-}
+	}

@@ -1,5 +1,9 @@
 package service_center.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
@@ -74,6 +78,20 @@ public class Appl {
 		repiatRepair1.setStatus(st);
 		repiatRepair1.setReceipt(receipt1);
 		controller.addRepiatRepair(repiatRepair1);
+		
+		History history1 = new History();
+		history1.setReceipt(receipt1);
+		history1.setStatus((String)st.getStatus().toArray()[0]);
+		//System.out.println(history1.getStatus());
+		history1.setUser(user1);
+		controller.addHistory(history1);
+		
+		history1.setStatus((String)st.getStatus().toArray()[1]);
+		//System.out.println(history1.getStatus());
+		controller.addHistory(history1);				// !!!!!!!!!!!!!!!!!!!!!!
+		
+		//history1.setStatus((String)st.getStatus().toArray()[4]);
+		//controller.addHistory(history1);
 		
 
 		System.out.println(receipt1);

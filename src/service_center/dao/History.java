@@ -3,15 +3,17 @@ package service_center.dao;
 import java.util.*;
 import javax.persistence.*;
 
-
 @Entity
-public class History{
+public class History {
 	@Id
 	@GeneratedValue
 	private int id;
+	@OneToOne
+	private Receipt receipt;
 	private String status;
 	private Date date;
-//	private User user;
+	@OneToOne
+	private User user;
 
 	public History() {
 		super();
@@ -33,15 +35,24 @@ public class History{
 		this.date = date;
 	}
 
-/*	public User getUser() {
+	public int getId() {
+		return id;
+	}
+
+	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
-	}*/
-
-	public int getId() {
-		return id;
 	}
+
+	public Receipt getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(Receipt receipt) {
+		this.receipt = receipt;
+	}	
+
 }
