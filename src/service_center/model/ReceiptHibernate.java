@@ -128,7 +128,7 @@ public class ReceiptHibernate implements IServiceCenter {
 
 	@Override
 	@Transactional
-	public boolean add—omplexityRepair(ComplexityRepair complexityRepair) {
+	public boolean addComplexityRepair(ComplexityRepair complexityRepair) {
 		ComplexityRepair complRepEntity = getComplRep(complexityRepair.getComplexity());
 		if (complRepEntity == null) {
 			complRepEntity = new ComplexityRepair(complexityRepair.getComplexity(), complexityRepair.getTime());
