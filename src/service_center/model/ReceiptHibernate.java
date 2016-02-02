@@ -1,12 +1,22 @@
 package service_center.model;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import service_center.dao.*;
-
+import service_center.dao.Client;
+import service_center.dao.ComplexityRepair;
+import service_center.dao.Position;
+import service_center.dao.Product;
+import service_center.dao.Receipt;
+import service_center.dao.RepiatRepair;
+import service_center.dao.Shop;
+import service_center.dao.Status;
+import service_center.dao.User;
 import service_center.interfaces.IServiceCenter;
 
 public class ReceiptHibernate implements IServiceCenter {
@@ -16,8 +26,8 @@ public class ReceiptHibernate implements IServiceCenter {
 	@Override
 	@Transactional
 	public boolean addReceipt(Receipt receipt) {
-			em.persist(receipt);
-			return true;
+		em.persist(receipt);
+		return true;
 	}
 
 	@Override
@@ -29,59 +39,135 @@ public class ReceiptHibernate implements IServiceCenter {
 	@Override
 	@Transactional
 	public boolean addClient(Client client) {
-		em.persist(client);
-		return true;
+		Client clientEntity = em.find(Client.class, client.getTelNumber());
+		if (clientEntity == null) {
+			clientEntity = new Client(client.getfName(), client.getsName(), client.getTelNumber(), client.getEmail(),
+					client.getAddress());
+			em.persist(client);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	@Transactional
 	public boolean addShop(Shop shop) {
-		em.persist(shop);
+		Shop shopEntity = em.find(Shop.class, shop.getId());
+		if (shopEntity == null) {
+			shopEntity = new Shop(shop.getName(), shop.getCode());
+			em.persist(shop);
+		}
 		return true;
 	}
 
 	@Override
 	@Transactional
 	public boolean addUser(User user) {
-		em.persist(user);
-		return true;
+		User userEntity = getUser(user.getTelNumber());
+		if (userEntity == null) {
+			userEntity = new User(user.getLogin(), user.getPassword(), user.getfName(), user.getsName(),
+					user.getTelNumber());
+			em.persist(user);
+			return true;
+		}
+		return false;
+	}
+
+	private User getUser(String telNumber) {
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.telNumber = ?1");
+		query.setParameter(1, telNumber);
+		List<User> res = query.getResultList();
+		if (res == null || res.size() == 0)
+			return null;
+		return res.get(0);
 	}
 
 	@Override
 	@Transactional
 	public boolean addPosition(Position position) {
-		// TODO Auto-generated method stub
-		em.persist(position);
-		return true;
+		Position positionEntity = getPosition(position.getPositionJob());
+		if (positionEntity == null) {
+			positionEntity = new Position(position.getAccessLevel(), position.getPositionJob());
+			em.persist(positionEntity);
+			return true;
+		}
+		return false;
+	}
+
+	private Position getPosition(String positionJob) {
+		Query query = em.createQuery("SELECT p FROM Position p WHERE p.positionJob = ?1");
+		query.setParameter(1, positionJob);
+		List<Position> res = query.getResultList();
+		if (res == null || res.size() == 0)
+			return null;
+		return res.get(0);
 	}
 
 	@Override
 	@Transactional
 	public boolean addProduct(Product product) {
-		em.persist(product);
-		return true;
+		Product productEntity = getProdut(product.getModel(), product.getManufacturer());
+		if(productEntity == null){
+			productEntity = new Product(product.getName(), product.getSerialNumber(), product.getWarranty(), product.getManufacturer(), product.getModel(), product.getComplexityRepair());
+			em.persist(productEntity);
+			return true;
+		}
+		return false;
 	}
 
-	
+	private Product getProdut(String model, String manufacturer) {
+		Query query = em.createQuery("SELECT p FROM Product p WHERE p.model = ?1 AND p.manufacturer = ?2");
+		query.setParameter(1, model);
+		query.setParameter(2, manufacturer);
+		List<Product> res = query.getResultList();
+		if (res == null || res.size() == 0)
+			return null;
+		return res.get(0);
+	}
+
 	@Override
 	@Transactional
 	public boolean add—omplexityRepair(ComplexityRepair complexityRepair) {
-		em.persist(complexityRepair);
-		return true;
+		ComplexityRepair complRepEntity = getComplRep(complexityRepair.getComplexity());
+		if(complRepEntity == null){
+			complRepEntity = new ComplexityRepair(complexityRepair.getComplexity(), complexityRepair.getTime());
+			em.persist(complRepEntity);
+			return true;
+		}
+		return false;
+	}
+
+	private ComplexityRepair getComplRep(String complexity) {
+		Query query = em.createQuery("SELECT c FROM ComplexityRepair c WHERE c.complexity = ?1");
+		query.setParameter(1, complexity);
+		List<ComplexityRepair> res = query.getResultList();
+		if (res == null || res.size() == 0)
+			return null;
+		return res.get(0);
 	}
 
 	@Override
 	@Transactional
 	public boolean addStatus(Status status) {
-		em.persist(status);
-		return true;
+		Status statusEntity = em.find(Status.class, status.getId());
+		if(statusEntity == null){
+			statusEntity = new Status();
+			em.persist(statusEntity);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	@Transactional
 	public boolean addRepiatRepair(RepiatRepair repiatRepair) {
+		RepiatRepair repEntity = em.find(RepiatRepair.class, repiatRepair.getId());
+		if(repEntity == null){
+		repEntity = new RepiatRepair();	
 		em.persist(repiatRepair);
 		return true;
+		}
+		return false;
 	}
 
 }
