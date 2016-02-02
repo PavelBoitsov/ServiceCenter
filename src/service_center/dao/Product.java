@@ -12,13 +12,16 @@ public class Product {
 	private int warranty;
 	private String manufacturer;
 	private String model;
+	@ManyToOne
+	private ComplexityRepair complexityRepair;
 
-	public Product(String name, String serialNumber, int warranty, String manufacturer, String model) {
+	public Product(String name, String serialNumber, int warranty, String manufacturer, String model, ComplexityRepair complexityRepair) {
 		this.name = name;
 		this.serialNumber = serialNumber;
 		this.warranty = warranty;
 		this.manufacturer = manufacturer;
 		this.model = model;
+		this.setComplexityRepair(complexityRepair);
 	}
 
 	public Product() {
@@ -66,5 +69,13 @@ public class Product {
 
 	public int getId() {
 		return id;
+	}
+
+	public ComplexityRepair getComplexityRepair() {
+		return complexityRepair;
+	}
+
+	public void setComplexityRepair(ComplexityRepair complexityRepair) {
+		this.complexityRepair = complexityRepair;
 	}
 }

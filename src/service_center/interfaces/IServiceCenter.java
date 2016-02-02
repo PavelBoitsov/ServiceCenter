@@ -8,6 +8,10 @@ public interface IServiceCenter {
 	boolean addShop(Shop shop);
 	boolean addUser(User user);
 	boolean addPosition(Position position);
+	boolean addProduct(Product product);
+	boolean add—omplexityRepair(ComplexityRepair complexityRepair);
+	boolean addStatus(Status status);
+	boolean addRepiatRepair(RepiatRepair repiatRepair);
 	
 	public Iterable<Receipt> getAllReceipt();
 

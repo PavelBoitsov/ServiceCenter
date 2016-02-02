@@ -9,16 +9,23 @@ public class RepiatRepair {
 	@GeneratedValue
 	private int id;
 	private Date date;
+	@ManyToOne
+	private Receipt receipt;
+	@ManyToOne
+	private User user;
+	@ManyToOne
+	private Product product;
 	private String defectCorrect;
-//	private Map<Integer, String> status;
 	private String authorizedService;
+	@ManyToOne
+	private Status status;
 	private Date dateTransfer;
 	private String infoTransfer;
 	
 	public RepiatRepair() {
 		super();
 	}
-
+	
 	public Date getDate() {
 		return date;
 	}
@@ -35,14 +42,6 @@ public class RepiatRepair {
 		this.defectCorrect = defectCorrect;
 	}
 
-/*	public Map<Integer, String> getStatus() {
-		return status;
-	}
-
-	public void setStatus(Map<Integer, String> status) {
-		this.status = status;
-	}
-*/
 	public String getAuthorizedService() {
 		return authorizedService;
 	}
@@ -66,4 +65,38 @@ public class RepiatRepair {
 	public void setInfoTransfer(String infoTransfer) {
 		this.infoTransfer = infoTransfer;
 	}
+
+	public Receipt getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(Receipt receipt) {
+		this.receipt = receipt;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	
 }

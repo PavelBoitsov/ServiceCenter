@@ -15,16 +15,19 @@ public class Receipt {
 	private Shop shop;
 	@ManyToOne
 	private User user;
-//	private Product product;
+	@ManyToOne
+	private Product product;
 	private String defectClient;
 	private String equipment;
 	private String view;
-//	private Map<Integer, String> status;
+	@ManyToOne
+	private Status status;
 	private String defectCorrect;
 	private String authorizedService;
 	private Date dateTransfer;
 	private String infoTransfer;
-//	private RepiatRepair repiatRepair;
+	@OneToMany (mappedBy = "receipt")
+	private Set <RepiatRepair> repiatRepair;
 
 	public Receipt() {
 	}
@@ -61,14 +64,14 @@ public class Receipt {
 		this.user = user;
 	}
 
-/*	public Product getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-*/
+
 	public String getDefectClient() {
 		return defectClient;
 	}
@@ -93,14 +96,6 @@ public class Receipt {
 		this.view = view;
 	}
 
-/*	public Map<Integer, String> getStatus() {
-		return status;
-	}
-
-	public void setStatus(Map<Integer, String> status) {
-		this.status = status;
-	}
-*/
 	public String getDefectCorrect() {
 		return defectCorrect;
 	}
@@ -133,14 +128,22 @@ public class Receipt {
 		this.infoTransfer = infoTransfer;
 	}
 
-/*	public RepiatRepair getRepiatRepair() {
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Set<RepiatRepair> getRepiatRepair() {
 		return repiatRepair;
 	}
 
-	public void setRepiatRepair(RepiatRepair repiatRepair) {
+	public void setRepiatRepair(Set<RepiatRepair> repiatRepair) {
 		this.repiatRepair = repiatRepair;
 	}
-	*/
-	
+
+
 
 }

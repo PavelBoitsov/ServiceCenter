@@ -5,11 +5,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import service_center.dao.Client;
-import service_center.dao.Position;
-import service_center.dao.Receipt;
-import service_center.dao.Shop;
-import service_center.dao.User;
+import service_center.dao.*;
+
 import service_center.interfaces.IServiceCenter;
 
 public class ReceiptHibernate implements IServiceCenter {
@@ -55,6 +52,35 @@ public class ReceiptHibernate implements IServiceCenter {
 	public boolean addPosition(Position position) {
 		// TODO Auto-generated method stub
 		em.persist(position);
+		return true;
+	}
+
+	@Override
+	@Transactional
+	public boolean addProduct(Product product) {
+		em.persist(product);
+		return true;
+	}
+
+	
+	@Override
+	@Transactional
+	public boolean add—omplexityRepair(ComplexityRepair complexityRepair) {
+		em.persist(complexityRepair);
+		return true;
+	}
+
+	@Override
+	@Transactional
+	public boolean addStatus(Status status) {
+		em.persist(status);
+		return true;
+	}
+
+	@Override
+	@Transactional
+	public boolean addRepiatRepair(RepiatRepair repiatRepair) {
+		em.persist(repiatRepair);
 		return true;
 	}
 
