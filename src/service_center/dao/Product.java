@@ -15,13 +15,13 @@ public class Product {
 	@ManyToOne
 	private ComplexityRepair complexityRepair;
 
-	public Product(String name, String serialNumber, int warranty, String manufacturer, String model, ComplexityRepair complexityRepair) {
+	public Product(String name, String serialNumber, int warranty, String manufacturer, String model) {
+		super();
 		this.name = name;
 		this.serialNumber = serialNumber;
 		this.warranty = warranty;
 		this.manufacturer = manufacturer;
 		this.model = model;
-		this.setComplexityRepair(complexityRepair);
 	}
 
 	public Product() {

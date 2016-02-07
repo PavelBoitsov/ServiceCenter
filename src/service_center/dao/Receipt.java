@@ -20,8 +20,8 @@ public class Receipt {
 	private String defectClient;
 	private String equipment;
 	private String view;
-	@ManyToOne
-	private Status status;
+	//@ManyToOne
+	private String status;
 	private String defectCorrect;
 	private String authorizedService;
 	private Date dateTransfer;
@@ -128,11 +128,12 @@ public class Receipt {
 		this.infoTransfer = infoTransfer;
 	}
 
-	public Status getStatus() {
+	
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
